@@ -5,8 +5,8 @@ import (
 	"github.com/gin-contrib/gzip"
 	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
+	"io/fs"
 	"net/http"
-	"one-api/common"
 	"one-api/controller"
 	"one-api/middleware"
 	"strings"
@@ -21,10 +21,12 @@ func SetWebRouter(router *gin.Engine, indexPageUser []byte, indexPageAdmin []byt
 	router.Use(middleware.Cache())
 
 	// Serve the default (user) frontend
-	router.Use(static.Serve("/", common.EmbedFolder(buildFS, "web-user")))
+	fsysUser, _ := fs.Sub(buildFS, "web-user")
+	router.Use(static.Serve("/", http.FS(fsysUser)))
 
 	// Serve the admin frontend
-	router.Use(static.Serve("/admin", common.EmbedFolder(buildFS, "web-admin")))
+	fsysAdmin, _ := fs.Sub(buildFS, "web-admin")
+	router.Use(static.Serve("/admin", http.FS(fsysAdmin)))
 
 	router.NoRoute(func(c *gin.Context) {
 		if strings.HasPrefix(c.Request.RequestURI, "/v1") || strings.HasPrefix(c.Request.RequestURI, "/api") || strings.HasPrefix(c.Request.RequestURI, "/assets") {
