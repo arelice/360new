@@ -1,14 +1,16 @@
 {
   "name": "react-template",
-  "homepage": "http://127.0.0.1:3000/admin",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
-    "@douyinfe/semi-ui": "^2.51.3",
-    "@visactor/react-vchart": "^1.11.0",
-    "@visactor/vchart": "^1.11.0",
-    "@visactor/vchart-semi-theme": "^1.11.0",
+    "@douyinfe/semi-icons": "^2.46.1",
+    "@douyinfe/semi-ui": "^2.55.3",
+    "@visactor/react-vchart": "~1.8.8",
+    "@visactor/vchart": "~1.8.8",
+    "@visactor/vchart-semi-theme": "~1.8.8",
     "axios": "^0.27.2",
+    "dayjs": "^1.11.11",
     "history": "^5.3.0",
     "marked": "^4.1.1",
     "react": "^18.2.0",
@@ -16,18 +18,18 @@
     "react-dropzone": "^14.2.3",
     "react-fireworks": "^1.0.4",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "5.0.1",
+    "react-telegram-login": "^1.1.2",
     "react-toastify": "^9.0.8",
     "react-turnstile": "^1.0.5",
-    "semantic-ui-css": "^2.5.0",
-    "semantic-ui-react": "^2.1.3",
-    "usehooks-ts": "^2.9.1"
+    "semantic-ui-offline": "^2.5.0",
+    "semantic-ui-react": "^2.1.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "prettier . --check",
+    "lint:fix": "prettier . --write",
+    "preview": "vite preview"
   },
   "eslintConfig": {
     "extends": [
@@ -48,24 +50,15 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.21.4",
-    "@babel/eslint-parser": "^7.21.3",
-    "eslint": "^8.38.0",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-config-react-app": "^7.0.1",
-    "eslint-plugin-flowtype": "^8.0.3",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.32.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "immutable": "^4.3.0",
-    "prettier": "^2.7.1",
-    "sass": "^1.53.0",
-    "typescript": "4.4.2"
+    "@so1ve/prettier-config": "^2.0.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "prettier": "^3.0.0",
+    "typescript": "4.4.2",
+    "vite": "^5.2.0"
   },
   "prettier": {
     "singleQuote": true,
     "jsxSingleQuote": true
-  }
+  },
+  "proxy": "http://localhost:3000"
 }
