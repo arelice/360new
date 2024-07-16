@@ -12,7 +12,7 @@ import (
 	"strings"
 )
 
-//go:embed web-user web-admin
+//go:embed web web-admin
 var buildFS embed.FS
 
 func SetWebRouter(router *gin.Engine, indexPageUser []byte, indexPageAdmin []byte) {
@@ -21,7 +21,7 @@ func SetWebRouter(router *gin.Engine, indexPageUser []byte, indexPageAdmin []byt
 	router.Use(middleware.Cache())
 
 	// Serve the default (user) frontend
-	fsysUser, _ := fs.Sub(buildFS, "web-user")
+	fsysUser, _ := fs.Sub(buildFS, "web")
 	router.Use(static.Serve("/", http.FS(fsysUser)))
 
 	// Serve the admin frontend
