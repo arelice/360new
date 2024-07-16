@@ -20,11 +20,14 @@ import (
 	_ "net/http/pprof"
 )
 
-//go:embed web/dist
+//go:embed router/web router/web-admin
 var buildFS embed.FS
 
-//go:embed web/dist/index.html
-var indexPage []byte
+//go:embed router/web/index.html
+var indexPageUser []byte
+
+//go:embed router/web-admin/index.html
+var indexPageAdmin []byte
 
 func main() {
 	common.SetupLogger()
@@ -132,7 +135,7 @@ func main() {
 	store := cookie.NewStore([]byte(common.SessionSecret))
 	server.Use(sessions.Sessions("session", store))
 
-	router.SetRouter(server, buildFS, indexPage)
+	router.SetRouter(server)
 	var port = os.Getenv("PORT")
 	if port == "" {
 		port = strconv.Itoa(*common.Port)
